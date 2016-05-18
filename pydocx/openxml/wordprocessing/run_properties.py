@@ -7,6 +7,7 @@ from __future__ import (
 
 from pydocx.models import XmlModel, XmlChild
 from pydocx.types import OnOff, Underline
+from pydocx.openxml.wordprocessing.rfonts import RFonts
 
 
 class RunProperties(XmlModel):
@@ -25,6 +26,18 @@ class RunProperties(XmlModel):
     parent_style = XmlChild(name='rStyle', attrname='val')
     pos = XmlChild(name='position', attrname='val')
     sz = XmlChild(name='sz', attrname='val')
+    clr = XmlChild(name='color', attrname='val')
+    r_fonts = XmlChild(type=RFonts)
+
+    @property
+    def color(self):
+        if self.clr is None:
+            return
+        # TODO: When we support background colors, remove FFFFFF check
+        if self.clr == '000000' or self.clr == 'FFFFFF':
+            return
+
+        return self.clr
 
     @property
     def position(self):
