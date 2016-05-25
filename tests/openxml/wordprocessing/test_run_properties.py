@@ -26,6 +26,16 @@ class RunPropertiesTestCase(TestCase):
 
         self.assertTrue(properties.r_fonts.is_symbol())
 
+    def test_run_properties_can_have_drawing(self):
+        xml = b'''
+            <rPr>
+              <drawing>
+              </drawing>
+            </rPr>
+        '''
+        properties = self._load_styles_from_xml(xml)
+        self.assertIsNotNone(properties.drawing)
+
     def test_bold_on(self):
         xml = b'''
             <rPr>

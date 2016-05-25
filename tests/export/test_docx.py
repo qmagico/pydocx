@@ -50,7 +50,8 @@ class ConvertDocxToHtmlTestCase(DocXFixtureTestCaseFactory):
         'table_col_row_span',
         'tables_in_lists',
         'track_changes_on',
-        'table_with_multi_rowspan'
+        'table_with_multi_rowspan',
+        'run_properties_can_have_drawing_element'
     )
 
     @raises(MalformedDocxException)
@@ -70,6 +71,7 @@ class ConvertDocxToHtmlTestCase(DocXFixtureTestCaseFactory):
         file_html = self.convert_docx_to_html(open(path, 'rb'))
         assert file_html
         self.assertEqual(path_html, file_html)
+
 
 
 ConvertDocxToHtmlTestCase.generate()
